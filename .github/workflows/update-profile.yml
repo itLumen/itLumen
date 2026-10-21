@@ -1,0 +1,35 @@
+name: Update Profile Stats
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Generate assets
+        env:
+          ACCOUNT_1_LOGIN: ${{ secrets.ACCOUNT_1_LOGIN }}
+          ACCOUNT_1_TOKEN: ${{ secrets.ACCOUNT_1_TOKEN }}
+          ACCOUNT_2_LOGIN: ${{ secrets.ACCOUNT_2_LOGIN }}
+          ACCOUNT_2_TOKEN: ${{ secrets.ACCOUNT_2_TOKEN }}
+        run: python3 scripts/update_profile.py
+
+      - name: Commit & push
+        env:
+          COMMIT_NAME: ${{ secrets.ACCOUNT_1_LOGIN }}
+          COMMIT_EMAIL: ${{ secrets.ACCOUNT_1_NOREPLY_EMAIL }}
+        run: |
+          git config user.name "$COMMIT_NAME"
+          git config user.email "$COMMIT_EMAIL"
+          git add assets README.md
+          if git commit -m ":)"; then
+            git push
+          fi
