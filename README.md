@@ -33,8 +33,8 @@
 
 <div align="center">
 
-<img src="assets/stats-card.svg?t=1794801393" />
-<img src="assets/langs-card.svg?t=1794801393" />
+<img src="assets/stats-card.svg?t=1794887120" />
+<img src="assets/langs-card.svg?t=1794887120" />
 
 </div>
 
@@ -42,6 +42,6 @@
 
 <div align="center">
 
-<img src="assets/calendar.svg?t=1794801393" width="100%" />
+<img src="assets/calendar.svg?t=1794887120" width="100%" />
 
 </div>
